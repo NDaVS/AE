@@ -1,0 +1,34 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "20d3052a-3ac0-4452-b3c7-9b0c383787b7",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "947cc4a8-1372-4f2f-8f24-b34bbebe9e10",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "090eb6de-5fb7-45f9-9812-751c73e2a65b",
+                    "path": "<Touchscreen>/{Back}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
