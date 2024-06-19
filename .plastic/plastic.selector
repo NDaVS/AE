@@ -1,0 +1,4 @@
+repository "secondGame@unity_6fxtXX8dhsDBSg@cloud"
+  path "/"
+    br "/main"
+    co "/main"
