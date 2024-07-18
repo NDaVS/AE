@@ -135,7 +135,7 @@ public class PlacementManager : MonoBehaviour
     private void SpawnBase(Vector3 spawnPosition)
     {
         var spawnTile = Instantiate(tile, spawnPosition, Quaternion.identity);
-        spawnTile.transform.DOPunchScale(Vector3.one * 1.1f, 0.1f, 3).SetEase(Ease.InCirc).Play();
+        spawnTile.transform.DOPunchScale(Vector3.one * 1.1f, 0.3f, 3).SetEase(Ease.InCirc).Play();
         spawnableObjects.Add(spawnPosition, spawnTile);
         player.AddTile(spawnPosition, spawnTile);
     }
