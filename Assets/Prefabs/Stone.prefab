@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1968803609417408928}
   - component: {fileID: 5678868768886349461}
+  - component: {fileID: 2051534207566183741}
   m_Layer: 0
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: modification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8856272799337279581}
@@ -48,6 +49,28 @@ MonoBehaviour:
   update1: {fileID: 4888271316603537976, guid: 8010e458c567c2d4f8b3a2e698b91959, type: 3}
   update1_1: {fileID: 619796489960117475, guid: a5ce937a995f0f0489a4e6cfb3abce86,
     type: 3}
+--- !u!64 &2051534207566183741
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354863842231535292}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &8190954380896479975
 GameObject:
   m_ObjectHideFlags: 0

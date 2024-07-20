@@ -7,6 +7,9 @@ TagManager:
   - UnSelected
   - Selected
   - plain
+  - grid
+  - SetUI
+  - modification
   layers:
   - Default
   - TransparentFX

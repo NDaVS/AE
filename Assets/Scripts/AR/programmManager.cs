@@ -5,13 +5,15 @@ using UnityEngine.XR.ARSubsystems;
 
 public class programmManager : MonoBehaviour
 {
-    public GameObject PlaneMarkerPrefab;
+    public GameObject Tower;
     public GameObject Plane;
 
-    private bool isPlanePlaced = false;
+    private bool isPlaced = false;
 
     [SerializeField]
     private ARInputManager arinputManager;
+
+
 
     private ARRaycastManager raycastManager;
 
@@ -36,51 +38,92 @@ public class programmManager : MonoBehaviour
 
 
     public float rotationSpeed = 100f; // Скорость вращения
-    private bool isRotatingClockwise = false;
-    private bool isRotatingCounterClockwise = false;
 
 
 
+    private bool mode = true;
 
+
+
+    List<GameObject> towers = new List<GameObject>();
 
     void Start()
     {
         raycastManager = GetComponent<ARRaycastManager>();
-        PlaneMarkerPrefab.SetActive(false);
-        Debug.Log(raycastManager);
+
+        
     }
 
     
     void Update()
     {
-        //List<ARRaycastHit> hits = new List<ARRaycastHit>();
-        //raycastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.Planes);
-        //Debug.Log(hits.Count);
+        if(Input.touchCount > 0 && !isPlaced)
+        {
+            Debug.Log("Touchme");
+            Touch touch1 = Input.GetTouch(0);
+            Vector2 touchPos = touch1.position;
+            if (mode)
+            {
+                Debug.Log("first");
+                if(towers.Count == 0)
+                {
+                    var spawnTile = Instantiate(Tower, arinputManager.GetTouchMapPosition(touchPos), Quaternion.identity);
+                    towers.Add(spawnTile);
+                }
+                if (towers.Count > 2)
+                {
+                    towers[0].transform.position = arinputManager.GetTouchMapPosition(touchPos);
+
+                    Vector3 position3 = towers[0].transform.position;
+                    position3.x = towers[1].transform.position.x;
+                    towers[2].transform.position = position3;
+                    
+
+                    Vector3 position4 = towers[1].transform.position;
+                    position4.x = towers[0].transform.position.x;
+                    towers[3].transform.position = position4;
+
+                }
+                
+            }
+            else
+            {
+                Debug.Log("Second");
+                if (towers.Count == 1)
+                {
+                    var spawnTile = Instantiate(Tower, arinputManager.GetTouchMapPosition(touchPos), Quaternion.identity);
+                    towers.Add(spawnTile);
+
+                    Vector3 position3 = spawnTile.transform.position;
+                    position3.x = towers[1].transform.position.x;
+                    var spawnTile3 = Instantiate(Tower, position3, Quaternion.identity);
+                    towers.Add(spawnTile3);
+
+                    Vector3 position4 = spawnTile.transform.position;
+                    position4.x = towers[0].transform.position.x;
+                    var spawnTile4 = Instantiate(Tower, position3, Quaternion.identity);
+                    towers.Add(spawnTile4);
+                }
+                else
+                {
+                    towers[1].transform.position = arinputManager.GetTouchMapPosition(touchPos);
+
+                    Vector3 position3 = towers[0].transform.position;
+                    position3.x = towers[1].transform.position.x;
+                    towers[2].transform.position = position3;
+
+
+                    Vector3 position4 = towers[1].transform.position;
+                    position4.x = towers[0].transform.position.x;
+                    towers[3].transform.position = position4;
+                }
+            }
+        }
+
+
+
+
         
-
-        PlaneMarkerPrefab.SetActive(true);
-        Vector3 hitPosition = arinputManager.GetSelectedMapPosition();
-        PlaneMarkerPrefab.transform.position = hitPosition;
-        if (!isPlanePlaced && Input.GetMouseButtonDown(0))
-        {
-            isPlanePlaced = true;
-            SpawnPlane(hitPosition);
-        }
-        selectedObject = GameObject.FindGameObjectWithTag("plain");
-        MoveObject();
-
-        if (selectedObject != null)
-        {
-            if (isRotatingClockwise)
-            {
-                selectedObject.transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
-            }
-
-            if (isRotatingCounterClockwise)
-            {
-                selectedObject.transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
-            }
-        }
     }
 
     private void SpawnPlane(Vector3 pos)
@@ -156,23 +199,34 @@ public class programmManager : MonoBehaviour
         }
     }
 
-    public void StartRotateClockwise()
+
+
+    public void SetFirst()
     {
-        isRotatingClockwise = true;
+        mode = true;
     }
 
-    public void StopRotateClockwise()
+    public void SetSecond()
     {
-        isRotatingClockwise = false;
+        mode = false;
     }
 
-    public void StartRotateCounterClockwise()
+    public void Setplaced()
     {
-        isRotatingCounterClockwise = true;
+        if (towers.Count == 4)
+        {
+            isPlaced = true;
+        }
+        
+    }
+    public List<GameObject> GetTowers()
+    {
+        return towers;
     }
 
-    public void StopRotateCounterClockwise()
+    public bool IsPlaced()
     {
-        isRotatingCounterClockwise = false;
+        
+        return isPlaced;
     }
 }

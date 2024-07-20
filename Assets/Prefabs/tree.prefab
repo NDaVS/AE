@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 458445607380319201}
   - component: {fileID: 5001287195625261562}
+  - component: {fileID: 1624017291141197817}
   m_Layer: 0
   m_Name: tree
-  m_TagString: Untagged
+  m_TagString: modification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1791648221914627747}
   m_Father: {fileID: 0}
@@ -48,6 +49,28 @@ MonoBehaviour:
   update1: {fileID: 9157739755258915082, guid: aac63950a02f7e74c8ffa4c380873a76, type: 3}
   update1_1: {fileID: 4569429939502791488, guid: 0c064b7c12c45414c882f530704d8197,
     type: 3}
+--- !u!64 &1624017291141197817
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918291204259978561}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &8450613563492598777
 GameObject:
   m_ObjectHideFlags: 0

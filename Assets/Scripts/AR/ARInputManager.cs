@@ -6,8 +6,13 @@ using UnityEngine.XR.ARSubsystems;
 public class ARInputManager : MonoBehaviour
 {
     private ARRaycastManager raycastManager;
+
     [SerializeField] private Camera ARCamera;
+
     private Vector3 lastPosition;
+
+    private Modification SelectedObject;
+
 
     void Start()
     {
@@ -37,7 +42,27 @@ public class ARInputManager : MonoBehaviour
         {
             lastPosition = hits[0].pose.position;
         }
-        return lastPosition;
+
+        return new Vector3(
+            Mathf.Round(lastPosition.x * 1000f) / 1000f,
+            Mathf.Round(lastPosition.y * 1000f) / 1000f,
+            Mathf.Round(lastPosition.z * 1000f) / 1000f
+        );
+        
 
     }
+
+    //public Modification GetObjectByTouch(Vector2 tochPosition)
+    //{
+    //    Ray ray = ARCamera.ScreenPointToRay(tochPosition);
+    //    RaycastHit hitObject;
+
+    //    if (Physics.Raycast(ray, out hitObject))
+    //    {
+    //        if (hitObject.collider.CompareTag("modification")){
+    //            SelectedObject = hitObject.collider.GetComponent<Modification>();
+    //        }
+    //    }
+    //    return SelectedObject;
+    //}
 }
