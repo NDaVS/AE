@@ -18,7 +18,8 @@ public class ObjectPlacer : MonoBehaviour
     [SerializeField]
     public HumanBuilding HomeBuilding;
 
-    
+    [SerializeField]
+    public MainGame mainGame;
 
     private bool isModified = false;
 
@@ -37,7 +38,7 @@ public class ObjectPlacer : MonoBehaviour
         if (PM.IsPlaced() && !isModified)
         {
             
-            //mainGame.RemoveStartUI();
+            mainGame.RemoveStartUI();
             List<GameObject> towers = PM.GetTowers();
             List<float> xs = new List<float>();
             List<float> zs = new List<float>();

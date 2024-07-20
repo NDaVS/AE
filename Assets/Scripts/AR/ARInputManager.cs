@@ -11,7 +11,7 @@ public class ARInputManager : MonoBehaviour
 
     private Vector3 lastPosition;
 
-    private Modification SelectedObject;
+    
 
 
     void Start()
@@ -52,17 +52,18 @@ public class ARInputManager : MonoBehaviour
 
     }
 
-    //public Modification GetObjectByTouch(Vector2 tochPosition)
-    //{
-    //    Ray ray = ARCamera.ScreenPointToRay(tochPosition);
-    //    RaycastHit hitObject;
-
-    //    if (Physics.Raycast(ray, out hitObject))
-    //    {
-    //        if (hitObject.collider.CompareTag("modification")){
-    //            SelectedObject = hitObject.collider.GetComponent<Modification>();
-    //        }
-    //    }
-    //    return SelectedObject;
-    //}
+    public Modification GetObjectByTouch(Vector2 tochPosition)
+    {
+        Ray ray = ARCamera.ScreenPointToRay(tochPosition);
+        RaycastHit hitObject;
+        Modification SelectedObject = null;
+        if (Physics.Raycast(ray, out hitObject))
+        {
+            if (hitObject.collider.CompareTag("modification")){
+                Debug.Log("AM IN modification");
+                SelectedObject = hitObject.collider.GetComponent<Modification>();
+            }
+        }
+        return SelectedObject;
+    }
 }

@@ -23,12 +23,19 @@ public class Tree : Modification
         {
             isModified = true;
             this.level = 1;
+
             var man = Instantiate(update1, this.position, this.rotation);
             man.transform.parent = transform;
+            man.transform.localPosition = Vector3.zero;
+            man.transform.localScale = Vector3.one;
+            man.transform.DOPunchScale(Vector3.one * 1.1f, 0.1f, 3).SetEase(Ease.InCirc).Play();
+
             var timberWoods = Instantiate(update1_1, this.position, this.rotation);
             timberWoods.transform.parent = transform;
-            man.transform.DOPunchScale(Vector3.one * 1.1f, 0.1f, 3).SetEase(Ease.InCirc).Play();
+            timberWoods.transform.localPosition = Vector3.zero;
+            timberWoods.transform.localScale = Vector3.one;
             timberWoods.transform.DOPunchScale(Vector3.one * 1.1f, 0.1f, 3).SetEase(Ease.InCirc).Play();
+            
             res1Income += 2;
         }
     }

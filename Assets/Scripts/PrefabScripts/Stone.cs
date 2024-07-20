@@ -27,13 +27,24 @@ public class Stone : Modification
         {
             isModified = true;
             this.level = 1;
-            man = Instantiate(update1, this.position, this.rotation);
+
+            // Instantiate and set the parent before setting local position
+            man = Instantiate(update1, Vector3.zero, this.rotation);
             man.transform.parent = transform;
-            mineBase = Instantiate(update1_1, this.position, this.rotation);
-            mineBase.transform.parent = transform;
+            man.transform.localPosition = Vector3.zero;
+            man.transform.localScale = Vector3.one;
             man.transform.DOPunchScale(Vector3.one * 1.1f, 0.1f, 3).SetEase(Ease.InCirc).Play();
+
+            mineBase = Instantiate(update1_1, Vector3.zero, this.rotation);
+            mineBase.transform.parent = transform;
+            mineBase.transform.localPosition = Vector3.zero;
+            mineBase.transform.localScale = Vector3.one;
             mineBase.transform.DOPunchScale(Vector3.one * 1.1f, 0.1f, 3).SetEase(Ease.InCirc).Play();
+
             res2Income += 2;
+
+            Debug.Log(this.position);
+            Debug.Log(man.transform.position);
         }
     }
 
