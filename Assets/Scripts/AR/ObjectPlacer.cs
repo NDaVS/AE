@@ -27,6 +27,9 @@ public class ObjectPlacer : MonoBehaviour
 
     private HumanBuilding home;
 
+    [SerializeField]
+    private Mankind player;
+
     void Start()
     {
         
@@ -104,11 +107,7 @@ public class ObjectPlacer : MonoBehaviour
             modifications.Add(stone);
         }
 
-
-
-
-
-
+        player.SetMods(modifications);
 
     }
 }

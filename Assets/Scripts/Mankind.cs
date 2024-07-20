@@ -11,7 +11,10 @@ public class Mankind : Player
     [SerializeField]
     TextMeshProUGUI textRes2;
 
-    private void OnEnable()
+    private List<Modification> mods;
+    private HumanMainBuild1 home;
+
+    public void SetOn()
     {
         Observer.OnTimedEvent += HandleEvent;
     }
@@ -24,18 +27,22 @@ public class Mankind : Player
 
     private void HandleEvent()
     {
-        foreach (var item in modificationObjects.Values)
+        if (mods.Count > 0)
         {
-            if (item.IsModified())
+            foreach (var item in mods)
             {
-                List<int> income = item.getIncome();
-                res1 += income[0];
-                res2 += income[1];
+                if (item.IsModified())
+                {
+                    List<int> income = item.getIncome();
+                    res1 += income[0];
+                    res2 += income[1];
+                }
             }
+
+            UIController.Instance.UpdateUIRes1(res1);
+            UIController.Instance.UpdateUIRes2(res2);
         }
         
-        UIController.Instance.UpdateUIRes1(res1);
-        UIController.Instance.UpdateUIRes2(res2);
         
     }
     public override bool IsReadyToUpdate(List<int> cost)
@@ -53,6 +60,11 @@ public class Mankind : Player
         res2 -= cost[1];
         UIController.Instance.UpdateUIRes1(res1);
         UIController.Instance.UpdateUIRes2(res2);
+    }
+
+    public void SetMods(List<Modification> modifications)
+    {
+        this.mods = modifications;
     }
 
 

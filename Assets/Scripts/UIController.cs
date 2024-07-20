@@ -9,6 +9,9 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI textRes2;
+
+    [SerializeField]
+    TextMeshProUGUI textRes3;
     public static UIController Instance
     {
         get
@@ -21,11 +24,16 @@ public class UIController : MonoBehaviour
     private static UIController _instance;
     public void UpdateUIRes1 (int res1)
     {
-        textRes1.text = "res1: " + res1;
+        textRes1.text = "WOOD: " + res1;
     }
 
     public void UpdateUIRes2(int res2)
     {
-        textRes2.text = "res2: " + res2;
+        textRes2.text = "STONE: " + res2;
+    }
+
+    public void UpdateUIRes3(int res3)
+    {
+        textRes2.text = "GOLD: " + res3;
     }
 }
