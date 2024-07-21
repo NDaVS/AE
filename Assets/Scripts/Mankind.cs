@@ -11,6 +11,8 @@ public class Mankind : Player
     [SerializeField]
     TextMeshProUGUI textRes2;
 
+    
+
     private List<Modification> mods;
     private HumanMainBuild1 home;
 
@@ -41,6 +43,7 @@ public class Mankind : Player
 
             UIController.Instance.UpdateUIRes1(res1);
             UIController.Instance.UpdateUIRes2(res2);
+            UIController.Instance.UpdateUIRes3(money);
         }
         
         
@@ -60,11 +63,31 @@ public class Mankind : Player
         res2 -= cost[1];
         UIController.Instance.UpdateUIRes1(res1);
         UIController.Instance.UpdateUIRes2(res2);
+        UIController.Instance.UpdateUIRes3(money);
     }
 
     public void SetMods(List<Modification> modifications)
     {
         this.mods = modifications;
+    }
+
+    public List<int> GetResourses()
+    {
+        List<int> ress = new List<int>();
+        ress.Add(res1);
+        ress.Add(res2);
+        ress.Add(money);
+        return ress;
+    }
+
+    public void AddResourses(List<int> resourses)
+    {
+        res1 += resourses[0];
+        res2 += resourses[1];
+        money += resourses[2];
+        UIController.Instance.UpdateUIRes1(res1);
+        UIController.Instance.UpdateUIRes2(res2);
+        UIController.Instance.UpdateUIRes3(money);
     }
 
 

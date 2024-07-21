@@ -34,6 +34,6 @@ public class UIController : MonoBehaviour
 
     public void UpdateUIRes3(int res3)
     {
-        textRes2.text = "GOLD: " + res3;
+        textRes3.text = "GOLD: " + res3;
     }
 }
