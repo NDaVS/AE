@@ -16,6 +16,11 @@ public class Mankind : Player
     private List<Modification> mods;
     private HumanMainBuild1 home;
 
+    private int numberOfPays = 0;
+
+    private float woodFactor = 1;
+    private float stoneFactor = 1;
+
     public void SetOn()
     {
         Observer.OnTimedEvent += HandleEvent;
@@ -27,17 +32,17 @@ public class Mankind : Player
 
     }
 
-    private void HandleEvent()
+    private void HandleEvent() 
     {
-        if (mods.Count > 0)
+        if (mods.Count > 0)// рассчёт прироста ресурсов
         {
             foreach (var item in mods)
             {
                 if (item.IsModified())
                 {
                     List<int> income = item.getIncome();
-                    res1 += income[0];
-                    res2 += income[1];
+                    res1 += (int) (income[0] * this.woodFactor);
+                    res2 += (int) (income[1] * this.stoneFactor);
                 }
             }
 
@@ -80,6 +85,12 @@ public class Mankind : Player
         return ress;
     }
 
+    public float GetPayCost()
+    {
+
+        return this.money * 1.5f * numberOfPays;
+    }
+
     public void AddResourses(List<int> resourses)
     {
         res1 += resourses[0];
@@ -88,6 +99,10 @@ public class Mankind : Player
         UIController.Instance.UpdateUIRes1(res1);
         UIController.Instance.UpdateUIRes2(res2);
         UIController.Instance.UpdateUIRes3(money);
+    }
+
+    public void addPay() {
+        this.numberOfPays += 1;
     }
 
 

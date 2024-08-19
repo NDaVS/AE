@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using TMPro;
+using System;
 using System.Collections.Generic;
 
 
@@ -56,7 +57,11 @@ public class MarketScript : MonoBehaviour
     private int wood;
     private int stone;
     private int gold;
-
+    private int soldWood;
+    private int soldStone;
+    static double totalWoodExchanged = 0;
+    static double totalStoneExchanged = 0;
+    static double baseFactor = 0.005;
 
 
     public void SetMarket()
@@ -235,13 +240,9 @@ public class MarketScript : MonoBehaviour
 
     public void Upgrade(int sceneNumber)
     {
-        List<int> resourses = player.GetResourses();
-        if (
-            resourses[0] >= UpdateWood &&
-            resourses[1] >= UpdateStone &&
-            resourses[2] >= UpdateGold)
+        if (UpdateGold >= player.GetPayCost())
         {
-            SceneManager.LoadScene(sceneNumber);
+            player.addPay();
         }
     }
 
@@ -253,8 +254,11 @@ public class MarketScript : MonoBehaviour
 
     private void GoldUpdate(TextMeshProUGUI gold, string sign)
     {
-        int addGold = (wood + stone);
-        this.gold = (wood + stone);
+        int addGold = (int) Math.Floor(
+            stone * Math.Pow(1 - baseFactor, totalStoneExchanged) +
+            wood * Math.Pow(1-baseFactor, totalWoodExchanged)
+            ); 
+        this.gold = addGold;
         gold.text = "" + player.GetResourses()[2]+sign + addGold;
     }
     
